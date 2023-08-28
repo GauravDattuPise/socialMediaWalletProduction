@@ -18,26 +18,16 @@ mongoose.connect(process.env.DB)
 
 app.use("/", route);
 
-// app.use(express.static(path.join(__dirname, "./client/build")));
-
-// app.get("*", function (req, res) {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"),
-//     function (err) {
-//       res.status(500).send(err);
-//     }
-//   )
-// });
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.get("*", function (req, res) {
-  const indexPath = path.join(__dirname, "./client/build/index.html");
-
-  res.sendFile(indexPath, function (err) {
-    if (err) {
-      console.error("Error sending index.html:", err);
-      res.status(500).send("Internal Server Error");
+  res.sendFile(path.join(__dirname, "../client/build/index.html"),
+    function (err) {
+      res.status(500).send(err);
     }
-  });
+  )
 });
+
 
  
 // running application on server
